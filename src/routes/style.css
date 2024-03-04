@@ -1,0 +1,133 @@
+:root {
+  --mainBG: rgb(20, 20, 20);
+  --accent: 45, 220, 170;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  box-sizing: border-box;
+  color: white;
+}
+
+body {
+  background: var(--mainBG);
+}
+
+.main-heading {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+header {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-wrp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.error-wrp h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.error-wrp .message {
+  color: rgb(161, 161, 161);
+}
+
+.form {
+  border-radius: 30px;
+  background: rgb(30 30 30);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  box-shadow: 0 7px 12px rgba(0, 0, 0, 0.531);
+}
+
+.form-element {
+  display: grid;
+  gap: 7px;
+}
+
+.form-element label {
+  max-width: fit-content;
+  transition: .3s;
+  font-size: .9rem;
+  color: grey;
+}
+
+.form-element label:hover {
+  color: white;
+}
+
+.form-element input {
+  transition: .3s;
+  outline: none;
+  background: transparent;
+  padding: 13px 19px;
+  border: 1px rgba(255, 255, 255, 0.349) solid;
+  font-size: 1rem;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.531);
+}
+
+@media (max-width: 500px) {
+  .form {
+    width: 95%;
+  }
+}
+
+@media (min-width: 501px) {
+  .form {
+    width: 370px;
+  }
+}
+
+.form-element input:hover,
+.form-element input:focus {
+  border-color: white;
+}
+
+.form-element input:focus::placeholder {
+  color: white;
+}
+
+.submit-wrp {
+  display: flex;
+  justify-content: right;
+}
+
+.submit {
+  background: rgb(var(--accent));
+  padding: 13px 19px;
+  cursor: pointer;
+  border: none;
+  max-width: fit-content;
+  font-size: 1rem;
+  transition: .3s;
+  color: black;
+  font-weight: 700;
+}
+
+.rounded-input {
+  border-radius: 18px;
+}
+
+.submit:hover {
+  filter: brightness(3);
+}
