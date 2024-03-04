@@ -1,7 +1,11 @@
-import { Client } from "appwrite"
+import { Client, Account } from "appwrite"
+import { PUBLIC_APPWRITE_KEY } from "$env/static/public"
 
-const client = new Client();
+export const client = new Client();
 
 client
   .setEndpoint('https://cloud.appwrite.io/v1')
-  .setProject(import.meta.env.PUBLIC_APPWRITE_KEY);
+  .setProject(PUBLIC_APPWRITE_KEY)
+
+export const account = new Account(client);
+export { ID } from 'appwrite';  
