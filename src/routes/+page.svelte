@@ -8,6 +8,7 @@
   import CopyIcon from "$lib/icons/CopyIcon.svelte";
   let url = "";
   let urlHash = "";
+  let showCopiedMsg = false;
 
   const databases = new Databases(client);
 
@@ -24,6 +25,10 @@
   function copy() {
     navigator.clipboard.writeText(`https://url-smol.vercel.app/${urlHash}`);
     console.log(`Copied text: https://url-smol.vercel.app/${urlHash}`);
+    showCopiedMsg = true;
+    setTimeout(() => {
+      showCopiedMsg = false;
+    }, 1390);
   }
 
   function shorten() {
@@ -102,7 +107,9 @@
               }}
               class="copy-btn"
             >
-              <!-- <img src="copy-icon.svg" alt="Copy icon" class="copy" /> -->
+              {#if showCopiedMsg}
+                <p class="copied-message">Copied!</p>
+              {/if}
               <CopyIcon />
             </button>
           </div>

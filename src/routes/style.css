@@ -157,7 +157,7 @@ header {
 }
 
 .copy-icon-svg path {
-  transition: .2s;
+  transition: .1s;
 }
 
 .copy-icon-svg:hover path {
@@ -166,4 +166,15 @@ header {
 
 .less {
   color: grey;
+}
+
+.copied-message {
+  position: absolute;
+  background: rgba(20, 20, 20, 0.805);
+  font-size: 1rem;
+  padding: 8px;
+  margin-top: -23px;
+  border-radius: 8px;
+  font-weight: 500;
+  transform: translateX(-70%);
 }
