@@ -7,6 +7,7 @@
   import { Databases, ID, Query } from "appwrite";
   import { client } from "$lib/appwrite";
   import Error from "$lib/components/Error.svelte";
+  import { browser } from "$app/environment";
   let error = false;
 
   const databases = new Databases(client);
@@ -22,7 +23,7 @@
       getDataPromise.then(
         function (response) {
           console.log(response);
-          if (response.total > 0) {
+          if (response.total > 0 && browser) {
             window.location.assign(response.documents[0].url);
           } else {
             error = true;
@@ -40,4 +41,6 @@
   getData();
 </script>
 
-<Error code={404} message="Hash not found" />
+{#if error}
+  <Error code={404} message="Hash not found" />
+{/if}
