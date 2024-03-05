@@ -22,8 +22,8 @@
   }
 
   function copy() {
-    navigator.clipboard.writeText(`http://localhost:5173/${urlHash}`);
-    console.log(`Copied text: http://localhost:5173/${urlHash}`);
+    navigator.clipboard.writeText(`https://url-smol.vercel.app/${urlHash}`);
+    console.log(`Copied text: https://url-smol.vercel.app/${urlHash}`);
   }
 
   function shorten() {
@@ -92,8 +92,8 @@
           <p class="label-p">Shortened URL</p>
           <div class="url-result-wrp rounded">
             <p class="url">
-              <span class="less">http://</span>
-              <span>localhost:5173/{urlHash}</span>
+              <span class="less">https://</span>
+              <span>url-smol.vercel.app/{urlHash}</span>
             </p>
             <button
               on:click={(e) => {
