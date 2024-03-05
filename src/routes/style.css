@@ -65,18 +65,21 @@ header {
   gap: 7px;
 }
 
-.form-element label {
+.form-element label,
+.form-element .label-p {
   max-width: fit-content;
   transition: .3s;
   font-size: .9rem;
   color: grey;
+  cursor: default;
 }
 
 .form-element label:hover {
   color: white;
 }
 
-.form-element input {
+.form-element input,
+.url-result-wrp {
   transition: .3s;
   outline: none;
   background: transparent;
@@ -124,10 +127,43 @@ header {
   font-weight: 700;
 }
 
-.rounded-input {
+.rounded {
   border-radius: 18px;
 }
 
 .submit:hover {
   filter: brightness(3);
+}
+
+.url-result-wrp {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.copy-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: grid;
+}
+
+.copy-icon-svg {
+  transition: .2s cubic-bezier(0.79, 0.02, 0.12, 1.77);
+}
+
+.copy-btn:active .copy-icon-svg {
+  transform: scale(1.1);
+}
+
+.copy-icon-svg path {
+  transition: .2s;
+}
+
+.copy-icon-svg:hover path {
+  fill: rgb(var(--accent));
+}
+
+.less {
+  color: grey;
 }

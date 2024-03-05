@@ -5,7 +5,9 @@
     PUBLIC_APPWRITE_DB,
     PUBLIC_APPWRITE_COLLECTION,
   } from "$env/static/public";
+  import CopyIcon from "$lib/icons/CopyIcon.svelte";
   let url = "";
+  let urlHash = "";
 
   const databases = new Databases(client);
 
@@ -17,6 +19,11 @@
       result += chars[Math.floor(Math.random() * chars.length)];
     }
     return result;
+  }
+
+  function copy() {
+    navigator.clipboard.writeText(`http://localhost:5173/${urlHash}`);
+    console.log(`Copied text: http://localhost:5173/${urlHash}`);
   }
 
   function shorten() {
@@ -43,7 +50,8 @@
 
           insertPromise.then(
             function (response) {
-              console.log(response);
+              console.log(response.hash);
+              urlHash = response.hash;
             },
             function (error) {
               console.log(error);
@@ -74,14 +82,37 @@
           bind:value={url}
           type="url"
           id="url"
-          class="rounded-input"
+          class="rounded"
           placeholder="goes here!"
           required
         />
       </div>
-      <div class="submit-wrp">
-        <button class="submit rounded-input" type="submit">Shorten!</button>
-      </div>
+      {#if urlHash}
+        <div class="form-element">
+          <p class="label-p">Shortened URL</p>
+          <div class="url-result-wrp rounded">
+            <p class="url">
+              <span class="less">http://</span>
+              <span>localhost:5173/{urlHash}</span>
+            </p>
+            <button
+              on:click={(e) => {
+                e.preventDefault();
+                copy();
+              }}
+              class="copy-btn"
+            >
+              <!-- <img src="copy-icon.svg" alt="Copy icon" class="copy" /> -->
+              <CopyIcon />
+            </button>
+          </div>
+        </div>
+      {/if}
+      {#if !urlHash}
+        <div class="submit-wrp">
+          <button class="submit rounded" type="submit">Shorten!</button>
+        </div>
+      {/if}
     </form>
   </div>
 </header>
