@@ -1,49 +1,53 @@
 <script>
-  import { Client, Databases, ID, Query } from "appwrite";
+  import { Databases, ID, Query } from "appwrite";
   import { client } from "$lib/appwrite";
   import {
     PUBLIC_APPWRITE_DB,
     PUBLIC_APPWRITE_COLLECTION,
   } from "$env/static/public";
   let url = "";
+  let existsInDB = false;
 
   const databases = new Databases(client);
 
-  function getData() {
-    let promise = databases.listDocuments(
-      PUBLIC_APPWRITE_DB,
-      PUBLIC_APPWRITE_COLLECTION,
-      [Query.equal("hash", "test")],
-    );
+  function shorten() {
+    try {
+      let getDataPromise = databases.listDocuments(
+        PUBLIC_APPWRITE_DB,
+        PUBLIC_APPWRITE_COLLECTION,
+        [Query.equal("hash", "test")],
+      );
+      getDataPromise.then(
+        function (response) {
+          if (response.total > 0) {
+            // the hash already exists in the db and I have generate a new one.
+            console.log("Hash already exists");
+          } else {
+            console.log("hash dosn't exist");
+            const insertPromise = databases.createDocument(
+              PUBLIC_APPWRITE_DB,
+              PUBLIC_APPWRITE_COLLECTION,
+              ID.unique(),
+              { url: url, hash: "test" },
+            );
 
-    promise.then(
-      function (response) {
-        console.log(response.documents[0].url);
-      },
-      function (error) {
-        console.log(error);
-      },
-    );
-  }
-  getData();
-
-  function submit() {
-    console.log("Submit");
-    const promise = databases.createDocument(
-      PUBLIC_APPWRITE_DB,
-      PUBLIC_APPWRITE_COLLECTION,
-      ID.unique(),
-      { url: url, hash: "test" },
-    );
-
-    promise.then(
-      function (response) {
-        console.log(response);
-      },
-      function (error) {
-        console.log(error);
-      },
-    );
+            insertPromise.then(
+              function (response) {
+                console.log(response);
+              },
+              function (error) {
+                console.log(error);
+              },
+            );
+          }
+        },
+        function (error) {
+          console.log(error);
+        },
+      );
+    } catch (e) {
+      console.error(`Error in the try/catch: ${e}`);
+    }
   }
 </script>
 
@@ -54,7 +58,7 @@
       class="form"
       on:submit={(e) => {
         e.preventDefault();
-        submit();
+        shorten();
       }}
     >
       <div class="form-element">
