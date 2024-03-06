@@ -177,4 +177,5 @@ header {
   border-radius: 8px;
   font-weight: 500;
   transform: translateX(-70%);
+  z-index: 2;
 }
