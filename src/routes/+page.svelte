@@ -23,8 +23,8 @@
   }
 
   function copy() {
-    navigator.clipboard.writeText(`https://url-smol.vercel.app/${urlHash}`);
-    console.log(`Copied text: https://url-smol.vercel.app/${urlHash}`);
+    navigator.clipboard.writeText(`https://lru.vercel.app/${urlHash}`);
+    console.log(`Copied text: https://lru.vercel.app/${urlHash}`);
     showCopiedMsg = true;
     setTimeout(() => {
       showCopiedMsg = false;
@@ -98,7 +98,7 @@
           <div class="url-result-wrp rounded">
             <p class="url">
               <span class="less">https://</span>
-              <span>url-smol.vercel.app/{urlHash}</span>
+              <span>lru.vercel.app/{urlHash}</span>
             </p>
             <button
               on:click={(e) => {
