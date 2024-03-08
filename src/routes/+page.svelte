@@ -6,6 +6,7 @@
     PUBLIC_APPWRITE_COLLECTION,
   } from "$env/static/public";
   import CopyIcon from "$lib/icons/CopyIcon.svelte";
+  import { browser } from "$app/environment";
   let url = "";
   let urlHash = "";
   let showCopiedMsg = false;
@@ -23,8 +24,12 @@
   }
 
   function copy() {
-    navigator.clipboard.writeText(`https://lru.vercel.app/${urlHash}`);
-    console.log(`Copied text: https://lru.vercel.app/${urlHash}`);
+    navigator.clipboard.writeText(
+      `${location.protocol}//${location.host}/${urlHash}`,
+    );
+    console.log(
+      `Copied text: ${location.protocol}//${location.host}/${urlHash}`,
+    );
     showCopiedMsg = true;
     setTimeout(() => {
       showCopiedMsg = false;
@@ -97,8 +102,8 @@
           <p class="label-p">Shortened URL</p>
           <div class="url-result-wrp rounded">
             <p class="url">
-              <span class="less">https://</span>
-              <span>lru.vercel.app/{urlHash}</span>
+              <span class="less">{location.protocol}//</span>
+              <span>{location.host}/{urlHash}</span>
             </p>
             <button
               on:click={(e) => {
