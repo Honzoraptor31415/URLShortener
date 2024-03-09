@@ -72,6 +72,7 @@ header {
   font-size: .9rem;
   color: grey;
   cursor: default;
+  padding: 4px;
 }
 
 .form-element label:hover {
@@ -146,6 +147,7 @@ header {
   border: none;
   cursor: pointer;
   display: grid;
+  position: relative;
 }
 
 .copy-icon-svg {
@@ -176,6 +178,15 @@ header {
   margin-top: -23px;
   border-radius: 8px;
   font-weight: 500;
-  transform: translateX(-70%);
+  right: 0;
   z-index: 2;
+  cursor: default;
+}
+
+.form-error {
+  color: red !important;
+  background: rgba(162, 0, 0, 0.233);
+  max-width: 100%;
+  padding: 4px;
+  border-radius: 7px;
 }
